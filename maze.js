@@ -2,6 +2,7 @@ window.onload = function(){
 	//document.getElementById("boundary1").onmouseover = outOfBounds;
 	var bounds = document.querySelectorAll(".boundary");
 	setupBounds(bounds);
+	document.getElementById("end").onmouseover = win;
 }
 
 
@@ -21,4 +22,11 @@ function outOfBounds(){
 			bounds[i].className+=" youlose";
 		}
 	}	
+}
+
+function win(){
+	var b = document.querySelector(".boundary");
+	if(b.className !== "boundary youlose"){
+		alert("Congratulations! You Win!")
+	}
 }
