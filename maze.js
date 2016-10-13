@@ -1,8 +1,13 @@
+var bounds;
+var s = false;
 window.onload = function(){
 	//document.getElementById("boundary1").onmouseover = outOfBounds;
-	var bounds = document.querySelectorAll(".boundary");
+	bounds = document.querySelectorAll(".boundary");
+	
 	setupBounds(bounds);
-	document.getElementById("end").onmouseover = win;
+	document.getElementById("start").onmouseover = start;
+	document.getElementById("end").onmouseover = win;	
+	document.getElementById("start").onclick = reset;
 }
 
 
@@ -14,7 +19,6 @@ function setupBounds(list){
 
 function outOfBounds(){
 	//document.getElementById("boundary1").className+=" youlose";
-	var bounds = document.querySelectorAll(".boundary");
 	var c;
 	for(var i = 0; i < bounds.length; i++ ){
 		c = bounds[i].className;
@@ -23,10 +27,22 @@ function outOfBounds(){
 		}
 	}	
 }
+function start(){
+	s = true;
+}
 
 function win(){
-	var b = document.querySelector(".boundary");
-	if(b.className !== "boundary youlose"){
-		alert("Congratulations! You Win!")
+	if (s){
+		var b = document.querySelector(".boundary");
+		if(b.className !== "boundary youlose"){
+			alert("You Win!")
+		}
 	}
+	s = false;
+}
+
+function reset(){
+	for(var i = 0; i < bounds.length; i++ ){
+		bounds[i].className = "boundary";
+	}	 
 }
